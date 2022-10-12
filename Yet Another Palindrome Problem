@@ -1,0 +1,90 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        int n;
+        cin>>n;
+        int a[n];
+        for(int i=0;i<n;i++){
+            cin>>a[i];
+        }
+        int x,y;
+        if(n%2){
+            x=n/2;
+            y=n/2;
+        }
+        else{
+            x=n/2;
+            y=n/2;
+            x--;
+        }
+        int flag=0;
+        while(x>=0 && y<n){
+            if(a[x]==a[y]){
+            x--;y++;}
+            else{
+                flag=1;
+                break;
+            }
+        }
+        if(!flag)
+        cout<<0<<endl;
+        else{
+            int temp=0;
+            int c=x;
+            int d=y;
+            while(x>=0 && y<n){
+                if(a[x]>a[y]){
+                    temp=1;
+                    break;
+                }
+                else{
+                    x--;
+                    y++;
+                }
+            }
+            if(temp){
+                cout<<-1<<endl;
+            }
+            else{
+                x=c;
+                y=d;
+                temp=0;
+                while(x>0 && y<n-1){
+                    if(a[y]-a[x]>a[y+1]-a[x-1]){
+                        temp=1;
+                        break;
+                    }
+                    else
+                    x--,y++;
+                }
+                if(temp)
+                cout<<-1<<endl;
+                else{
+                    x=c;
+                    y=d;
+                    temp=0;
+                    int w=a[y++]-a[x--];
+                    while(x>=0 && y<n){
+                        if(a[x]+w>a[y]){
+                            temp=1;
+                            break;
+                        }
+                        else{
+                            w=a[y++]-a[x--];
+                        }
+                    }
+                    if(temp)
+                    cout<<-1<<endl;
+                    else
+                    cout<<w<<endl;
+                }
+            }
+        }
+    }
+    return 0;
+}
+
+ 
