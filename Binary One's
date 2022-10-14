@@ -1,0 +1,16 @@
+int countOnes(int arr[], int N){
+        int count_ones=0;
+        
+        for(int i=0;i<N;i++){
+            if(arr[i]==1){
+                 count_ones++;   
+            }
+            else{
+                break;
+            }
+        }   
+       
+       return count_ones;
+        
+    }
+};
