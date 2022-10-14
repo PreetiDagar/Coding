@@ -1,0 +1,28 @@
+void inOrder(Node *root,vector<Node *> &v)
+{
+    if (root==NULL)
+        return;
+    inOrder(root->left,v);
+    v.push_back(root);
+    inOrder(root->right,v);
+}
+int median(Node *node,int k)
+{
+    if (node==NULL)
+        return -1;
+    
+    vector<Node *> v;
+    inOrder(node,v);
+    Node *subTreeRoot = v[k-1];
+    v.clear();
+    inOrder(subTreeRoot,v);
+    int length = v.size();
+    if (length%2!=0)
+    {
+        return v[length/2]->data;
+    }
+    else
+    {
+        return (v[length/2]->data + v[(length/2)-1]->data)/2;
+    }
+}
