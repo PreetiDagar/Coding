@@ -1,0 +1,32 @@
+class Solution
+{
+    public:
+        bool dfs( vector<vector<int>>adj, int currNode, vector<int>&vis, int count, int N){
+        if(count == N)
+        return true;
+        vis[currNode] = 1;
+        for(auto&v:adj[currNode]){
+            if(!vis[v]){
+                if(dfs(adj, v, vis, count+1, N))
+                return true;
+            }
+        }
+        vis[currNode] = 0;
+        return false;
+    }
+    
+    
+    bool check(int N,int M,vector<vector<int>> edges){
+        vector<vector<int>>adj(N);
+        for(auto&k:edges){
+            adj[k[0]-1].push_back(k[1]-1);
+            adj[k[1]-1].push_back(k[0]-1);
+        }
+        vector<int>vis(N,0);
+        for(int i=0;i<N;i++)
+        if(dfs(adj,i,vis,1,N))
+        return true ;
+        return false ;
+    }
+
+};
