@@ -1,0 +1,31 @@
+class Solution {
+  public:
+    vector<int> reverseSpiral(int R, int C, vector<vector<int>>&a)  {
+        vector<int> v;
+        int top=0,bottom=R-1,right=C-1,left=0;
+        while(top<=bottom&&left<=right){
+            for(int i=left;i<=right;i++){
+                v.push_back(a[top][i]);
+            }
+            top++;
+            for(int i=top;i<=bottom;i++){
+                v.push_back(a[i][right]);
+            }
+            right--;
+            if(top<=bottom){
+                for(int i=right;i>=left;i--){
+                    v.push_back(a[bottom][i]);
+                }
+                bottom--;
+            }
+            if(left<=right){
+                for(int i=bottom;i>=top;i--){
+                    v.push_back(a[i][left]);
+                }
+                left++;
+            }
+        }
+        reverse(v.begin(),v.end());
+        return v;
+    }
+};
