@@ -1,0 +1,36 @@
+class Solution {
+  public:
+void leafNode(int preorder[], int n,vector<int> &v)
+{
+    stack<int> s;
+    for (int i = 0, j = 1; j < n; i++, j++)
+    {
+        bool found = false;
+        if (preorder[i] > preorder[j]) // all the left ones are in decreasing order so we go on inserting
+            s.push(preorder[i]);
+        else
+        {
+            while (!s.empty())
+            {
+                if (preorder[j] > s.top())
+                {
+                    s.pop();
+                    found = true;
+                }
+                else
+                    break;
+            }
+        }
+        if (found)
+            v.push_back(preorder[i]);
+    }
+ //right most
+    v.push_back(preorder[n-1]);
+}
+    vector<int> leafNodes(int arr[],int N) {
+        // code here
+        vector<int> v;
+        leafNode(arr,N,v);
+        return v;
+    }
+};
