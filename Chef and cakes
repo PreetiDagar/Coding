@@ -1,0 +1,20 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define ll long long
+
+signed main() {
+	// your code goes here
+	int t;
+	cin>>t;
+    while(t--){
+        ll n,m; cin>>n>>m;
+        ll gcd = __gcd(n,m);
+        ll robots_left = n/gcd;                         
+        if(n-robots_left==0)cout<<"Yes"<<endl;
+        else cout<<"No"<<" "<<robots_left<<endl;        
+    }
+	    
+	 
+	return 0;
+}
