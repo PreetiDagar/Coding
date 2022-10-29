@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int t;
+    cin>>t;
+    while(t--)
+    {   
+        string s;
+        cin>>s;
+        int n=s.size();
+        int ctr=0,ctg=0;
+        for(int i=0;i<n;i++){
+            if(s[i]=='R')ctr++;
+            else ctg++;
+        }
+        s.push_back(s[0]);
+        int ctpairr=0,ctpairg=0;
+        for(int i=0;i<n;i++){
+           if(s[i]=='R' and s[i+1]=='R')ctpairr++;
+           else if(s[i]=='G' and s[i+1]=='G')ctpairg++;
+        }
+        if(ctr==ctg and ctpairg==1 and ctpairr==1)cout<<"yes\n";
+        else if(ctr==ctg and ctpairr==0 and ctpairg==0)cout<<"yes\n";
+        else cout<<"no\n";
+        
+    }
+    return 0;
+}
