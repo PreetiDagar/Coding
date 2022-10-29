@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+
+int main()
+{
+    int tt;
+    cin >> tt;
+    while (tt--)
+    {
+        long long int N, B;
+
+        cin >> N >> B;
+
+        long long int i = N / (2 * B);
+        long long int x = i * (N - i * B), y = (i - 1) * (N - (i - 1) * B), z = (i + 1) * (N - (i + 1) * B);
+        long long int ans = max(x, max(y, z));
+        cout << ans << "\n";
+    }
+    return 0;
+}
