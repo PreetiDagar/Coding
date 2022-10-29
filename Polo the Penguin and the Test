@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+#define int long long
+#define pb push_back
+#define pob pop_back
+#define mpair make_pair
+#define io ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+#define t int t;cin>>t;while(t--)
+using namespace std;
+
+int f(int n,int tm,vector<int>&marks,vector<int>&time,vector<vector<int>>&dp){
+    if(n==0){
+        if(tm>=time[0])return marks[0];
+        else return 0;
+    }
+    int take=0;
+    if(dp[n][tm]!=-1)return dp[n][tm];
+    if(tm>=time[n])take=marks[n]+f(n-1,tm-time[n],marks,time,dp);
+    int nottake=f(n-1,tm,marks,time,dp);
+   // cout<<take<<" "<<nottake<<endl;
+    return dp[n][tm]=max(take,nottake);
+}
+int32_t main(){
+    t{
+    int n,tm;cin>>n>>tm;
+    vector<vector<int>>dp(n,vector<int>(tm+1,0));
+   
+    vector<int>marks;
+    vector<int>time;
+     for(int i=0;i<n;i++){
+        int x,y,z;
+        cin>>x>>y>>z;
+        marks.pb(x*y);
+        time.pb(z);
+     }
+     for(int i=0;i<tm+1;i++){
+        if(i>=time[0])dp[0][i]=marks[0];
+        else dp[0][i]=0;
+     }
+     for(int i=1;i<n;i++){
+        for(int j=0;j<=tm;j++){
+            int take=0;
+               if(j>=time[i])take=marks[i]+dp[i-1][j-time[i]];
+              int nottake=dp[i-1][j];
+   // cout<<take<<" "<<nottake<<endl;
+   dp[i][j]=max(take,nottake);
+        }
+     }
+  int mx=0;
+  for(int i=0;i<tm+1;i++){
+    mx=max(mx,dp[n-1][i]);
+  }
+  cout<<mx<<endl;
+    }
+  return 0;
+}
