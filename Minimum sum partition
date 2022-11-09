@@ -1,0 +1,19 @@
+class Solution{
+
+  public:
+	int solve(int arr[], int n,int Total_sum,int sum,int indx)  { 
+	    // Your code goes here
+	    if(indx==n)
+	    return abs(Total_sum-2*sum);
+	    int ex=solve(arr,n,Total_sum,sum+0,indx+1);
+	    int in=solve(arr,n,Total_sum,sum+arr[indx],indx+1);
+	    return min(ex,in);
+	    
+	} 
+	int minDifference(int arr[],int n){
+	    int Total_sum=0;
+	    for(int i=0;i<n;i++)
+	    Total_sum+=arr[i];
+	    return solve(arr,n,Total_sum,0,0);
+	}
+};
