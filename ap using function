@@ -1,0 +1,11 @@
+#include<bits/stdc++.h>
+using namespace std;
+int Ap(int n){
+    n=3*n+7;
+    return n;
+}
+int main(){
+    int n;
+    cin>>n;
+    cout<<Ap(n)<<endl;
+}
