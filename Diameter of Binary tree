@@ -1,0 +1,26 @@
+class Solution {
+    private:
+    int height(struct Node*node){
+    if(node==NULL){
+        return 0;
+    }
+    int left=height(node->left);
+    int right=height(node->right);
+    int ans=max(left,right)+1;
+    return ans;
+}
+    
+  public:
+    // Function to return the diameter of a Binary Tree.
+    int diameter(Node* root) {
+        // Your code here
+        if(root==NULL){
+            return 0;
+        }
+        int option1=diameter(root->left);
+        int option2=diameter(root->right);
+        int option3=height(root->left)+1+height(root->right);
+        int ans=max(option1, max(option2,option3));
+        return ans;
+    }
+};
