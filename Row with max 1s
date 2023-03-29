@@ -1,0 +1,15 @@
+class Solution{
+public:
+	int rowWithMax1s(vector<vector<int> > arr, int n, int m) {
+	    int row = 0, onePosition = m - 1;
+	    for (int i = 0; i < n && onePosition > -1; ++i) {
+	        while (onePosition > -1 && arr[i][onePosition] == 1) {
+	            row = i;
+	            --onePosition;
+	        }
+	    }
+	    
+	    return onePosition == m - 1 ? -1 : row;
+	}
+
+};
