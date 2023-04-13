@@ -1,0 +1,23 @@
+class Solution{
+  public:
+    int countMin(string str) {
+        int n = str.length();
+        string rev(str.rbegin(), str.rend());
+        
+        vector<vector<int>> lcs(n + 1, vector<int> (n + 1, 0));
+        
+        for (int i = 0; i < n + 1; ++i) {
+            for (int j = 0; j < n + 1; ++j) {
+                if (i == 0 || j == 0) {
+                    continue;
+                } else if (str[i - 1] == rev[j - 1]) {
+                    lcs[i][j] = lcs[i - 1][j - 1] + 1;
+                } else {
+                    lcs[i][j] = max(lcs[i - 1][j], lcs[i][j - 1]);
+                }
+            }
+        }
+        
+        return n - lcs[n][n];
+    }
+};
