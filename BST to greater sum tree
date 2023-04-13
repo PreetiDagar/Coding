@@ -1,0 +1,23 @@
+class Solution
+{
+    public:
+    void transformTree(struct Node *root)
+    {
+        helper(root, 0);
+    }
+    
+    int helper(Node* root, int greater) {
+        if (!root) {
+            return 0;
+        }
+        
+        int rightSum = helper(root->right, greater);
+        
+        int temp = root->data;
+        root->data = rightSum + greater;
+        
+        int leftSum = helper(root->left, temp + rightSum + greater);
+        
+        return temp + leftSum + rightSum;
+    }
+};
