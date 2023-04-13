@@ -1,0 +1,29 @@
+void inorder(Node *root, vector<vector<int>> &result, int level) {
+    if (!root) 
+        return;
+    
+    if (level == result.size()) {
+        vector<int> temp;
+        result.push_back(temp);
+    }
+    
+    result[level].push_back(root->data);
+    
+    inorder(root->left, result, level + 1);
+    inorder(root->right, result, level);
+}
+
+vector<int> diagonal(Node *root)
+{
+    vector<vector<int>> diagonals;
+    inorder(root, diagonals, 0);
+    
+    vector<int> result;
+    for (auto i : diagonals) {
+        for (auto j : i) {
+            result.push_back(j);
+        }
+    }
+    
+    return result;
+}
