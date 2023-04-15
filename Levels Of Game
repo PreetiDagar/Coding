@@ -1,0 +1,27 @@
+class Solution{
+    public:
+        int maxLevel(int h,int m)
+        {
+            int levels = 0;
+            while (h > 0 && m > 0) {
+                levels++;
+                
+                h += 3;
+                m += 2;
+                
+                if (h > 5 && m > 10) {
+                    h -= 5;
+                    m -= 10;
+                } else if (h > 20) {
+                    h -= 20;
+                    m += 5;
+                } else {
+                    break;
+                }
+                
+                levels++;
+            }
+            
+            return levels;
+        }
+};
