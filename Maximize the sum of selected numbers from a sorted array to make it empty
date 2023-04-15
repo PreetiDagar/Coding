@@ -1,0 +1,20 @@
+class Solution{
+    public:
+    int maximizeSum(int a[], int n) 
+    {
+        int sum = 0;
+        multiset<int> mset(a, a + n);
+        while (!mset.empty()) {
+            int last = *mset.rbegin();
+            sum += last;
+            
+            mset.erase(prev(mset.end()));
+            if (mset.find(last - 1) != mset.end()) {
+                mset.erase(mset.find(last - 1));
+            }
+        }
+        
+        return sum;
+    }
+
+};
