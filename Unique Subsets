@@ -1,0 +1,33 @@
+class Solution
+{
+    public:
+    //Function to find all possible unique subsets.
+    vector<vector<int> > AllSubsets(vector<int> arr, int n)
+    {
+        set<vector<int>> subsets;
+        
+        sort(arr.begin(), arr.end());
+        
+        vector<int> st;
+        powerSet(arr, st, subsets);
+        
+        vector<vector<int>> result;
+        for (auto i : subsets) {
+            result.push_back(i);
+        }
+        
+        sort(result.begin(), result.end());
+        return result;
+    }
+    
+    void powerSet(vector<int> &arr, vector<int> st, set<vector<int>> &result, int i = -1) {
+        if (i >= 0) {
+            st.push_back(arr[i]);
+        }
+        result.insert(st);
+    
+        for (int j = i + 1; j < arr.size(); ++j) {
+            powerSet(arr, st, result, j);
+        }
+    }
+};
