@@ -1,0 +1,29 @@
+class Solution {
+public:
+	vector<int>SolveQueris(string str, vector<vector<int>>Query){
+	    vector<vector<int>> counts(str.length(), vector<int> (26, 0));
+	    for (int i = 0; i < str.length(); ++i) {
+	        for (int j = i; j < str.length(); ++j) {
+	            counts[j][str[i] - 'a']++;
+	        }
+	    }
+	    
+	    vector<int> result;
+	    for (int i = 0; i < Query.size(); ++i) {
+	        int cnt = 0;
+	        int L = Query[i][0], R = Query[i][1];
+	        
+	        for (int j = 0; j < 26; ++j) {
+	            if (L == 1) {
+	                cnt += counts[R-1][j] > 0 ? 1 : 0;
+	            } else {
+	                cnt += counts[R-1][j] > counts[L-2][j] ? 1 : 0;
+	            }
+	        }
+	        
+	        result.push_back(cnt);
+	    }
+	    
+	    return result;
+	}
+};
