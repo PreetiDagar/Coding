@@ -1,0 +1,19 @@
+class Solution {
+  public:
+    string findAndReplace(string S ,int Q, int index[], string sources[], string targets[]) {
+        for (int q = Q - 1; q > -1; --q) {
+            int ind = index[q];
+            string src = sources[q], tar = targets[q];
+            
+            string orig = S.substr(ind, min(S.length() - ind, src.length()));
+            if (orig == src) {
+                string prefix = S.substr(0, ind);
+                string suffix = S.substr(ind + src.length());
+                
+                S = prefix + tar + suffix;
+            }
+        }
+        
+        return S;
+    }
+};
