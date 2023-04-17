@@ -1,0 +1,38 @@
+class Solution{
+  public:
+    vector<int> maxProductSubsequence(int *arr , int n) 
+    {
+        vector<int> greatestLarger(n, -1);
+        for (int i = n - 2; i >= 0; --i) {
+            greatestLarger[i] = max(greatestLarger[i + 1], arr[i + 1]);
+        }
+        
+        vector<int> result;
+        set<int> st;
+        st.insert(arr[0]);
+        
+        long long maxItem = 1;
+        for (int i = 1; i < n - 1; ++i) {
+            long long s = arr[i];
+            auto it = st.lower_bound(s);
+            --it;
+            
+            st.insert(s);
+            long long f = *it, t = greatestLarger[i], mx = f * s * t;
+            if (mx > maxItem) {
+                if (f >= s || s >= t || f >= t) {
+                    continue;
+                }
+                result = {(int)f, (int)s, (int)t};
+                maxItem = mx;
+            }
+        }
+        
+        if (result.size() == 0) {
+            result.push_back(-1);
+        }
+        
+        return result;
+    } 
+
+};
