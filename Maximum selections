@@ -1,0 +1,21 @@
+class Solution{
+public:
+    int max_non_overlapping (vector<vector<int>> &ranges) {
+        sort(ranges.begin(), ranges.end(), [](const vector<int> &a, const vector<int> &b) -> bool {
+            if (a[1] != b[1]) {
+                return a[1] < b[1];
+            }
+            return a[0] < b[0];
+        });
+        
+        int ending = ranges[0][1], cnt = 1;
+        for (int i = 1; i < ranges.size(); ++i) {
+            if (ranges[i][0] >= ending) {
+                cnt += 1;
+                ending = ranges[i][1];
+            }
+        }
+        
+        return cnt;
+    }
+};
