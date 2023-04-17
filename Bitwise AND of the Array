@@ -1,0 +1,25 @@
+class Solution{
+    public:
+    int count(int N, vector<int> A,int X)
+    {
+        int p = 0, result = N;
+        
+        for (int i = 31; i >= 0; --i) {
+            if ((X >> i) & 1) {
+                p = p | (1 << i);
+            } else {
+                int mask = p | (1 << i);
+                int cnt = 0;
+                for (int item : A) {
+                    if ((item & mask) != mask) {
+                        cnt++;
+                    }
+                }
+                
+                result = min(result, cnt);
+            }
+        }
+        
+        return result;
+    }
+};
