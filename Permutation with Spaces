@@ -1,0 +1,25 @@
+class Solution{
+public:
+
+    vector<string> permutation(string S){
+        vector<string> result;
+        findPermutations(S, result, 0, "");
+        
+        return result;
+    }
+    
+    void findPermutations(string S, vector<string> &result, int index, string curr) {
+        if (index == 0) {
+            findPermutations(S, result, index + 1, curr + S[index]);
+            return;
+        } else if (index == S.length()) {
+            result.push_back(curr);
+            return;
+        }
+        
+        if (curr[curr.length() - 1] != ' ') {
+            findPermutations(S, result, index, curr + " ");
+        }
+        findPermutations(S, result, index + 1, curr + S[index]);
+    }
+};
