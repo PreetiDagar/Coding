@@ -1,0 +1,19 @@
+class Solution {
+  public:
+    void reArrange(int arr[], int N) {
+        int evenIndex = 0, oddIndex = 1;
+        
+        while (evenIndex < N && oddIndex < N) {
+            while (evenIndex < N && arr[evenIndex] % 2 == 0) {
+                evenIndex += 2;
+            }
+            while (oddIndex < N && arr[oddIndex] % 2 == 1) {
+                oddIndex += 2;
+            }
+            
+            if (evenIndex < N && oddIndex < N) {
+                swap(arr[evenIndex], arr[oddIndex]);
+            }
+        }
+    }
+};
