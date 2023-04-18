@@ -1,0 +1,18 @@
+class Solution{   
+public:
+    string stringPartition(string S, int a, int b){
+        string x, y;
+        y = S;
+        
+        for (int i = 0; i < S.length() - 1; ++i) {
+            x += S[i];
+            y.erase(0, 1);
+            
+            if (stoi(x) % a == 0 && stoi(y) % b == 0) {
+                return x + " " + y;
+            }
+        }
+        
+        return "-1";
+    }
+};
