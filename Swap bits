@@ -1,0 +1,13 @@
+class Solution{
+public:    
+    int swapBits(int x, int p1, int p2, int n)
+    {
+        while (n--) {
+            int mask = (x >> (n + p1) & 1) ^ (x >> (n + p2) & 1);
+            x ^= mask << (n + p1);
+            x ^= mask << (n + p2);
+        }
+        
+        return x;
+    }
+};
