@@ -1,0 +1,18 @@
+class Solution
+{
+    public:
+    int sum(int a , int b)
+    {
+        int carry = a & b;
+        int sum = a ^ b;
+        
+        int shift;
+        while (carry > 0) {
+            shift = carry << 1;
+            carry = sum & shift;
+            sum = sum ^ shift;
+        }
+        
+        return sum;
+    }
+};
